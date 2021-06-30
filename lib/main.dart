@@ -100,6 +100,15 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            FlatButton(
+              child: Text("简单路由打开一个新页面"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return NewRoute();
+                }));
+              },
+            ),
           ],
         ),
       ),
@@ -108,6 +117,20 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class NewRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("新页面"),
+      ),
+      body: Center(
+        child: Text("这是一个新页面"),
+      ),
     );
   }
 }
