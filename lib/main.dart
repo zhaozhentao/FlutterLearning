@@ -158,6 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('$_json'),
             Text('7.显示一个图片'),
             Image.asset('assets/images/header.png'),
+            Echo(text: "8.StatelessWidget")
           ],
         ),
       ),
@@ -223,6 +224,27 @@ class RandomWordsWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: new Text(wordPair.toString()),
+    );
+  }
+}
+
+class Echo extends StatelessWidget {
+  const Echo({
+    Key? key,
+    required this.text,
+    this.backgroundColor: Colors.grey,
+  }) : super(key: key);
+
+  final String text;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: backgroundColor,
+        child: Text(text),
+      ),
     );
   }
 }
