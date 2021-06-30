@@ -9,22 +9,20 @@ class ParentRoute extends StatelessWidget {
 
 class ParentWidget extends StatefulWidget {
   @override
-  _ParentWidgetState createState() => new _ParentWidgetState();
+  _ParentWidgetState createState() => _ParentWidgetState();
 }
 
 class _ParentWidgetState extends State<ParentWidget> {
   bool _active = false;
 
   void _handleTapboxChanged(bool newValue) {
-    setState(() {
-      _active = newValue;
-    });
+    setState(() => _active = newValue);
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new TapboxB(
+    return Container(
+      child: TapboxB(
         active: _active,
         onChanged: _handleTapboxChanged,
       ),
@@ -46,18 +44,18 @@ class TapboxB extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    return new GestureDetector(
+    return GestureDetector(
       onTap: _handleTap,
-      child: new Container(
-        child: new Center(
-          child: new Text(
+      child: Container(
+        child: Center(
+          child: Text(
             active ? 'Active' : 'Inactive',
-            style: new TextStyle(fontSize: 32.0, color: Colors.white),
+            style: TextStyle(fontSize: 32.0, color: Colors.white),
           ),
         ),
         width: 200.0,
         height: 200.0,
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           color: active ? Colors.lightGreen[700] : Colors.grey[600],
         ),
       ),

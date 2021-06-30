@@ -4,6 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import '10生命周期.dart';
 import '11state管理.dart';
 import '12父widget管理state.dart';
+import '13混合管理state.dart';
 import '1简单路由打开页面.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         "lifeCycle": (context) => LifeCycleRoute(),
         "state": (context) => StateRoute(),
         "parent": (context) => ParentRoute(),
+        "mixed": (context) => MixedRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -176,6 +178,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("12.父widget管理state"),
               onPressed: () => Navigator.pushNamed(context, "state"),
+            ),
+            FlatButton(
+              child: Text("13.混合管理state"),
+              onPressed: () => Navigator.pushNamed(context, "mixed"),
             ),
           ],
         ),
