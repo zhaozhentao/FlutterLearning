@@ -6,6 +6,7 @@ import '11state管理.dart';
 import '12父widget管理state.dart';
 import '13混合管理state.dart';
 import '14文本样式控制.dart';
+import '15button.dart';
 import '1简单路由打开页面.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         "parent": (context) => ParentRoute(),
         "mixed": (context) => MixedRoute(),
         "textStyle": (context) => TextStyleRoute(),
+        "button": (context) => ButtonRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -188,6 +190,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("14.文本样式"),
               onPressed: () => Navigator.pushNamed(context, "textStyle"),
+            ),
+            FlatButton(
+              child: Text("15.button"),
+              onPressed: () => Navigator.pushNamed(context, "button"),
             ),
           ],
         ),
