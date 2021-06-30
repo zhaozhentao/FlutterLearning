@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'file2.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         "index": (context) => NewRoute(),
         "context": (context) => ContextRoute(),
         "lifeCycle": (context) => LifeCycleRoute(),
+        "state": (context) => StateRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -94,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -114,9 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
@@ -165,6 +164,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("10.widget生命周期"),
               onPressed: () => Navigator.pushNamed(context, "lifeCycle"),
+            ),
+            FlatButton(
+              child: Text("11.state管理"),
+              onPressed: () => Navigator.pushNamed(context, "state"),
             ),
           ],
         ),
