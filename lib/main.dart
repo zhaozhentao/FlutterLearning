@@ -1,8 +1,14 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'file2.dart';
-import '父widget管理state.dart';
+
+import '10生命周期.dart';
+import '11state管理.dart';
+import '12父widget管理state.dart';
+import '1简单路由打开页面.dart';
+import '2路由传递参数.dart';
+import '5引用外部包.dart';
+import '8StatelessWidget.dart';
+import '9context应用.dart';
 
 void main() {
   runApp(MyApp());
@@ -124,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FlatButton(
               child: Text("1.简单路由打开一个新页面"),
-              textColor: Colors.blue,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return NewRoute();
@@ -133,7 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FlatButton(
               child: Text("2.路由传递参数"),
-              textColor: Colors.blue,
               onPressed: () async {
                 var result = await Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
@@ -145,12 +149,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FlatButton(
               child: Text("3.命名路由"),
-              textColor: Colors.blue,
               onPressed: () => Navigator.pushNamed(context, "index"),
             ),
             FlatButton(
                 child: Text("4.命名路由传参"),
-                textColor: Colors.blue,
                 onPressed: () {
                   Navigator.pushNamed(context, "arg", arguments: {"text": "t"});
                 }),
@@ -184,178 +186,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-}
-
-class NewRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("新页面"),
-      ),
-      body: Center(
-        child: Text("这是一个新页面"),
-      ),
-    );
-  }
-}
-
-class TipRoute extends StatelessWidget {
-  TipRoute({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("提示"),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(18),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(text),
-              RaisedButton(
-                onPressed: () => Navigator.pop(context, "我是返回值"),
-                child: Text("返回"),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class RandomWordsWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // 生成随机字符串
-    final wordPair = new WordPair.random();
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: new Text(wordPair.toString()),
-    );
-  }
-}
-
-class Echo extends StatelessWidget {
-  const Echo({
-    Key? key,
-    required this.text,
-    this.backgroundColor: Colors.grey,
-  }) : super(key: key);
-
-  final String text;
-  final Color backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: backgroundColor,
-        child: Text(text),
-      ),
-    );
-  }
-}
-
-class ContextRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Context测试"),
-      ),
-      body: Container(
-        child: Builder(builder: (context) {
-          // 在Widget树中向上查找最近的父级`Scaffold` widget
-          Scaffold? scaffold =
-              context.findAncestorWidgetOfExactType<Scaffold>();
-          // 直接返回 AppBar的title， 此处实际上是Text("Context测试")
-          AppBar appBar = scaffold!.appBar as AppBar;
-          return appBar.title as Widget;
-        }),
-      ),
-    );
-  }
-}
-
-class LifeCycleRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CounterWidget();
-  }
-}
-
-class CounterWidget extends StatefulWidget {
-  const CounterWidget({Key? key, this.initValue: 0});
-
-  final int initValue;
-
-  @override
-  _CounterWidgetState createState() => new _CounterWidgetState();
-}
-
-class _CounterWidgetState extends State<CounterWidget> {
-  late int _counter;
-
-  @override
-  void initState() {
-    super.initState();
-    //初始化状态
-    _counter = widget.initValue;
-    print("initState");
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print("build");
-    return Scaffold(
-      body: Center(
-        child: FlatButton(
-          child: Text('$_counter'),
-          //点击后计数器自增
-          onPressed: () => setState(
-            () => ++_counter,
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void didUpdateWidget(CounterWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print("didUpdateWidget");
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-    print("deactivate");
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print("dispose");
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    print("reassemble");
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print("didChangeDependencies");
   }
 }
