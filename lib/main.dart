@@ -156,6 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 }),
             RandomWordsWidget(),
             Text('$_json'),
+            Text('7.显示一个图片'),
+            Image.asset('assets/images/header.png'),
           ],
         ),
       ),
