@@ -60,7 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String _json = '';
 
-  _MyHomePageState() {
+  @override
+  void initState() {
+    super.initState();
     loadAsset();
   }
 
@@ -77,10 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void loadAsset() async {
     var json = await rootBundle.loadString('assets/text.txt');
-
-    setState(() {
-      _json = json;
-    });
+    setState(() => _json = json);
   }
 
   @override
