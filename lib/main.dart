@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+      routes: {"index": (context) => NewRoute()},
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -113,12 +114,18 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("2.路由传递参数"),
               textColor: Colors.blue,
               onPressed: () async {
-                var result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                var result = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
                   return TipRoute(text: "这是参数");
                 }));
 
                 print("新页面的返回值: $result");
               },
+            ),
+            FlatButton(
+              child: Text("3.命名路由"),
+              textColor: Colors.blue,
+              onPressed: () => Navigator.pushNamed(context, "index"),
             ),
           ],
         ),
