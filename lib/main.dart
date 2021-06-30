@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'file2.dart';
+import '父widget管理state.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         "context": (context) => ContextRoute(),
         "lifeCycle": (context) => LifeCycleRoute(),
         "state": (context) => StateRoute(),
+        "parent": (context) => ParentRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -167,6 +169,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FlatButton(
               child: Text("11.state管理"),
+              onPressed: () => Navigator.pushNamed(context, "state"),
+            ),
+            FlatButton(
+              child: Text("12.父widget管理state"),
               onPressed: () => Navigator.pushNamed(context, "state"),
             ),
           ],
