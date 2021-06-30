@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "index": (context) => NewRoute(),
+        "context": (context) => ContextRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -158,7 +159,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('$_json'),
             Text('7.显示一个图片'),
             Image.asset('assets/images/header.png'),
-            Echo(text: "8.StatelessWidget")
+            Echo(text: "8.StatelessWidget"),
+            FlatButton(
+              child: Text("9.context应用"),
+              onPressed: () => Navigator.pushNamed(context, "context"),
+            ),
           ],
         ),
       ),
@@ -244,6 +249,26 @@ class Echo extends StatelessWidget {
       child: Container(
         color: backgroundColor,
         child: Text(text),
+      ),
+    );
+  }
+}
+
+class ContextRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Context测试"),
+      ),
+      body: Container(
+        child: Builder(builder: (context) {
+          // 在Widget树中向上查找最近的父级`Scaffold` widget
+          Scaffold? scaffold = context.findAncestorWidgetOfExactType<Scaffold>();
+          // 直接返回 AppBar的title， 此处实际上是Text("Context测试")
+          AppBar appBar = scaffold!.appBar as AppBar;
+          return appBar.title as Widget;
+        }),
       ),
     );
   }
