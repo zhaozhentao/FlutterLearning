@@ -101,12 +101,23 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             FlatButton(
-              child: Text("简单路由打开一个新页面"),
+              child: Text("1.简单路由打开一个新页面"),
               textColor: Colors.blue,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return NewRoute();
                 }));
+              },
+            ),
+            FlatButton(
+              child: Text("2.路由传递参数"),
+              textColor: Colors.blue,
+              onPressed: () async {
+                var result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TipRoute(text: "这是参数");
+                }));
+
+                print("新页面的返回值: $result");
               },
             ),
           ],
@@ -130,6 +141,37 @@ class NewRoute extends StatelessWidget {
       ),
       body: Center(
         child: Text("这是一个新页面"),
+      ),
+    );
+  }
+}
+
+class TipRoute extends StatelessWidget {
+  TipRoute({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("提示"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(text),
+              RaisedButton(
+                onPressed: () => Navigator.pop(context, "我是返回值"),
+                child: Text("返回"),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
