@@ -8,6 +8,7 @@ import '13混合管理state.dart';
 import '14文本样式控制.dart';
 import '15button.dart';
 import '16image.dart';
+import '17checkbox.dart';
 import '1简单路由打开页面.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         "textStyle": (context) => TextStyleRoute(),
         "button": (context) => ButtonRoute(),
         "image": (context) => ImageRoute(),
+        "checkbox": (context) => CheckBoxRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -198,8 +200,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => Navigator.pushNamed(context, "button"),
             ),
             FlatButton(
-              child: Text("16.iamge"),
+              child: Text("16.image"),
               onPressed: () => Navigator.pushNamed(context, "image"),
+            ),
+            FlatButton(
+              child: Text("17.checkbox"),
+              onPressed: () => Navigator.pushNamed(context, "checkbox"),
             ),
           ],
         ),
