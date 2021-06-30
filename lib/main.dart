@@ -22,7 +22,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      routes: {"index": (context) => NewRoute()},
+      routes: {
+        "index": (context) => NewRoute(),
+        "arg": (context) {
+          Map map = ModalRoute.of(context)!.settings.arguments as Map;
+          return TipRoute(text: map['text']);
+        },
+      },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -127,6 +133,12 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.blue,
               onPressed: () => Navigator.pushNamed(context, "index"),
             ),
+            FlatButton(
+                child: Text("4.命名路由传参"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "arg", arguments: {"text": "t"});
+                }),
           ],
         ),
       ),
