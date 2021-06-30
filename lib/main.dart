@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(MyApp());
@@ -55,6 +56,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _json = '';
+
+  _MyHomePageState() {
+    loadAsset();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -64,6 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void loadAsset() async {
+    var json = await rootBundle.loadString('assets/text.txt');
+
+    setState(() {
+      _json = json;
     });
   }
 
@@ -141,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, "arg", arguments: {"text": "t"});
                 }),
             RandomWordsWidget(),
+            Text('$_json'),
           ],
         ),
       ),
