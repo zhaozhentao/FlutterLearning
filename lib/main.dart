@@ -10,6 +10,7 @@ import '15button.dart';
 import '16image.dart';
 import '17checkbox.dart';
 import '18input.dart';
+import '19表单验证.dart';
 import '1简单路由打开页面.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         "image": (context) => ImageRoute(),
         "checkbox": (context) => CheckBoxRoute(),
         "input": (context) => InputRoute(),
+        "focus": (context) => FormTestRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -212,6 +214,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("18.input"),
               onPressed: () => Navigator.pushNamed(context, "input"),
+            ),
+            FlatButton(
+              child: Text("19.表单验证"),
+              onPressed: () => Navigator.pushNamed(context, "focus"),
             ),
           ],
         ),
