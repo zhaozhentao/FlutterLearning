@@ -13,6 +13,7 @@ import '18input.dart';
 import '19表单验证.dart';
 import '1简单路由打开页面.dart';
 import '20布局.dart';
+import '21Column.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
 import '8StatelessWidget.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         "input": (context) => InputRoute(),
         "focus": (context) => FormTestRoute(),
         "layout": (context) => LayoutRoute(),
+        "column": (context) => ColumnRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -224,6 +226,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("20.布局"),
               onPressed: () => Navigator.pushNamed(context, "layout"),
+            ),
+            FlatButton(
+              child: Text("21.布局"),
+              onPressed: () => Navigator.pushNamed(context, "column"),
             ),
           ],
         ),
