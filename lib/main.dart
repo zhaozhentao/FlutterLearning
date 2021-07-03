@@ -14,6 +14,7 @@ import '19表单验证.dart';
 import '1简单路由打开页面.dart';
 import '20布局.dart';
 import '21ListView.dart';
+import '22ListView.dart';
 import '2路由传递参数.dart';
 import '5引用外部包.dart';
 import '8StatelessWidget.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         "focus": (context) => FormTestRoute(),
         "layout": (context) => LayoutRoute(),
         "column": (context) => ColumnRoute(),
+        "listview": (context) => ListViewRoute(),
         "arg": (context) {
           Map map = ModalRoute.of(context)!.settings.arguments as Map;
           return TipRoute(text: map['text']);
@@ -230,6 +232,10 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("21.布局"),
               onPressed: () => Navigator.pushNamed(context, "column"),
+            ),
+            FlatButton(
+              child: Text("22.listview"),
+              onPressed: () => Navigator.pushNamed(context, "listview"),
             ),
           ],
         ),
